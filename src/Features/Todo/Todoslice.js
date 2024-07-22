@@ -5,7 +5,9 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 // it can be array, string or any thing but we are defining as object as it can contain many thing
 const initialState = {
     //so in  object, an array is created
-    todos: [{
+    //agar local storae me is key ke saath koi data hai to wo le lo nahi to hello world ke saath initilize kar do
+    todos: JSON.parse(localStorage.getItem('todos')) || [{      
+        //{/* todos key and and local storage me key value ke saath pass kar rahe so le v usi se rahe hai */},
         id: 1,
         text: "Hello World",
     }]
@@ -37,6 +39,7 @@ export const Todoslice = createSlice({
             //ab todo bna diya to isko state ke andar dalna v to padega
             //todos sara todo ka collection hai usme mai todo ko uskar raha
             state.todos.push(todo)
+            localStorage.setItem('todos', JSON.stringify(state.todos));
         },
         //state give access to the initial values present in the state
         //action ab jaise remove ko call kiye then we need to pass some id, that id will be in action
@@ -44,6 +47,7 @@ export const Todoslice = createSlice({
             //action me id aaya hoga to payload me sirf id hi hoga
             //state.todos jo ki mera todos ka array hai usko hi overwrite kar dete hai
             state.todos = state.todos.filter((prev_todo) => (prev_todo.id !== action.payload))
+            localStorage.setItem('todos', JSON.stringify(state.todos));
             //jo todo ka id match kar gaya existing todo ke sath usko filter kar dega
             //filter kya karta hai --> jo condition match nahi krega usko filter kar dega
             //so todo agar match nahi kar raha id se means usko delete nahi karna hai and wo condition match kar raha
@@ -56,6 +60,7 @@ export const Todoslice = createSlice({
             const todotoupdate = state.todos.find((todo) => (todo.id === id))
             if(todotoupdate){
                 todotoupdate.text = newtext;
+                localStorage.setItem('todos', JSON.stringify(state.todos));
             }   
         }
     }        

@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1 >TODO Using Redux Tool-Kit</h1>
+      <h1 className='font-serif font-bold underline text-gray-800'>TODO Using Redux Tool-Kit</h1>
       <Addtodo/>
       <Todos/>
     </>
