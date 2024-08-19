@@ -68,7 +68,7 @@ export const Todoslice = createSlice({
 
 //ab jo reducers ke andar function hai wo sab ko individually export karna hoga 
 //createSlice has two property action and reducer 
-//actuan corrospond to each function written in reducer and while exporting we destructured the things of redurcer and then exporting so that the required thng can be export only
+//actian corrospond to each function written in reducer and while exporting we destructured the things of redurcer and then exporting so that the required thng can be export only
 export const {addtodo, removetodo, updatetodo} = Todoslice.actions
 
 //store ko reducer access me mil jaye uske liye usko v export karna padega
